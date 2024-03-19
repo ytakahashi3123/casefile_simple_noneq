@@ -1,28 +1,9 @@
 #!/bin/bash -x
 #
-#PJM -L "rscunit=ito-a" 
-#PJM -L "rscgrp=ito-s"
-#PJM -L "vnode=4"
-#PJM -L "vnode-core=36"
-#PJM -L "elapse=1440:00"
-#PJM -j
-#PJM -X
-#
-#module load intel
-source ~/.bashrc_su2 
-#
-#NUM_NODES=${PJM_VNODES}
-#NUM_CORES=36
-#NUM_PROCS=$((NUM_NODES*NUM_CORES))
-#ncpu=${NUM_PROCS}
+source $HOME/.bashrc_su2 
+source $HOME/.bashrc_mutationpp_for_su2
+
 ncpu=16
-
-#export I_MPI_PERHOST=$NUM_CORES
-#export I_MPI_FABRICS=shm:ofi
-
-#export I_MPI_HYDRA_BOOTSTRAP=rsh
-#export I_MPI_HYDRA_BOOTSTRAP_EXEC=/bin/pjrsh
-#export I_MPI_HYDRA_HOST_FILE=${PJM_O_NODEINF}
 
 initial=0
 if [ "$1" = "-init" ]; then
