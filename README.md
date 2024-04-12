@@ -11,7 +11,7 @@ Examples of batch scripts used on several HPCs are also provided.
 
 # How to start simulation
 
-## Run `SU2_CFD`
+## Run `SU2`
 
 ```console
 ./run_SU2_ss.sh
@@ -22,6 +22,10 @@ Before starting computation, please set permission of the script:
 cd sphere_light_unst_visc
 chmod +x run_SU2_ss.sh
 ```
+
+## Configuration file
+
+Computationsal conditioins by `SU2` are controled by the configuration file: `*.cfg`.
 
 # Contact:
 
