@@ -1,27 +1,33 @@
 #!/bin/bash -x
-#
-source $HOME/.bashrc_su2 
-source $HOME/.bashrc_mutationpp_for_su2
+
+version=v8.0.0
+#export SU2_HOME=/opt/SU2/SU2-$version
+export SU2_HOME=<SU2_install_path>/SU2-$version
+export SU2_RUN=$SU2_HOME/bin
+export PATH=$SU2_RUN:$PATH
+export PYTHONPATH=$SU2_RUN:$PYTHONPATH
+
+# With Mutation++
+export MPP_DATA_DIRECTORY=$SU2_HOME/subprojects/Mutationpp/data
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SU2_HOME/build/subprojects/Mutationpp
+
+# Please specify MPI-related path if necessary
+# For example MPICH 3.3
+#MPI_ROOT=/usr/lib64/mpich/mpich-3.3
+#PATH=$MPI_ROOT/bin:$PATH
+#LD_INCLUDE_PATH=$MPI_ROOT/include:$LD_INCLUDE_PATH
+#LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
+#export MPI_ROOT PATH LD_INCLUDE_PATH LD_LIBRARY_PATH
 
 ncpu=16
-
-initial=0
-if [ "$1" = "-init" ]; then
-    initial=1
-fi
-if [ "$1" = "-kill" ]; then
-    kill $(pidof mpirun)
-    exit
-fi
-
-DIR_BIN=/opt/SU2/SU2-v8.0.0/bin
+DIR_BIN=$SU2_RUN
 LD=${DIR_BIN}/SU2_CFD
 MPIP=mpirun
 LOG=log_su2
 INP=sphere.cfg
 
-DIR_OUTPUT=("output_restart" "output_flow" "output_surface_flow")
 # Make directory
+DIR_OUTPUT=("output_restart" "output_flow" "output_surface_flow")
 for (( i = 0; i < ${#DIR_OUTPUT[*]}; i++ ))
 {
    if [[ ! -e $DIR_OUTPUT[i] ]]; then

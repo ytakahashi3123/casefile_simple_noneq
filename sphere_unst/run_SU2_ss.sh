@@ -1,20 +1,22 @@
 #!/bin/bash -x
-#
-source $HOME/.bashrc_su2 
-#source $HOME/.bashrc_mutationpp_for_su2
+
+version=v7.5.0
+#export SU2_HOME=/opt/SU2/SU2-$version
+export SU2_HOME=<SU2_install_path>/SU2-$version
+export SU2_RUN=$SU2_HOME/bin
+export PATH=$SU2_RUN:$PATH
+export PYTHONPATH=$SU2_RUN:$PYTHONPATH
+
+# Please specify MPI-related path if necessary
+# For example MPICH 3.3
+#MPI_ROOT=/usr/lib64/mpich/mpich-3.3
+#PATH=$MPI_ROOT/bin:$PATH
+#LD_INCLUDE_PATH=$MPI_ROOT/include:$LD_INCLUDE_PATH
+#LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
+#export MPI_ROOT PATH LD_INCLUDE_PATH LD_LIBRARY_PATH
 
 ncpu=16
-
-initial=0
-if [ "$1" = "-init" ]; then
-    initial=1
-fi
-if [ "$1" = "-kill" ]; then
-    kill $(pidof mpirun)
-    exit
-fi
-
-DIR_BIN=/opt/SU2/SU2-v7.5.0/bin
+DIR_BIN=$SU2_RUN
 LD=${DIR_BIN}/SU2_CFD
 MPIP=mpirun
 LOG=log_su2
