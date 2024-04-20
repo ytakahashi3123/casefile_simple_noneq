@@ -1,0 +1,11 @@
+
+#SU2
+version=v8.0.0-intel
+export SU2_HOME=<SU2_install_dir>/SU2/SU2-$version
+export SU2_RUN=$SU2_HOME/bin
+export PATH=$SU2_RUN:$PATH
+export PYTHONPATH=$SU2_RUN:$PYTHONPATH
+
+# With Mutation++
+export MPP_DATA_DIRECTORY=$SU2_HOME/subprojects/Mutationpp/data
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SU2_HOME/build_intel/subprojects/Mutationpp
