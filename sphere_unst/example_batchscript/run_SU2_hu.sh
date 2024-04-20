@@ -4,7 +4,7 @@
 #PJM -L "node=2"
 #PJM --mpi proc=80
 #PJM -L "elapse=06:00:00"
-#PJM -g "g20943"
+#PJM -g "<group_nane>"
 #PJM -j -X -S
 
 source $HOME/.bashrc_su2
